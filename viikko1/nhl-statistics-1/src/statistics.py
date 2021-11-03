@@ -29,9 +29,10 @@ class Statistics:
             key=sort_by_points
         )
 
+        how_many = min(len(sorted_players), how_many)
         result = []
         i = 0
-        while i <= how_many:
+        while i < how_many:
             result.append(sorted_players[i])
             i += 1
 
