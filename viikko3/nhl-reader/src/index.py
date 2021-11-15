@@ -23,9 +23,13 @@ def main():
 
     print(f"Players from {nationality} (time: {datetime.now()}): \n")
 
-    for player in players:
-        if player.nationality == nationality:
-            print(player)
+    filtered_players = filter(lambda p: p.nationality == nationality, players)
+
+    for player in sorted(filtered_players, reverse=True ,key=sort_by_points):
+        print(player)
+
+def sort_by_points(player):
+    return player.points
 
 if __name__ == "__main__":
     main()
