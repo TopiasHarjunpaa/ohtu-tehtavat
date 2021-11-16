@@ -33,6 +33,20 @@ Register With Nonmatching Password And Password Confirmation
     Submit Credentials
     Register Should Fail With Message  Password and confirmation does not match
 
+Login After Successful Registration
+    Go To Login Page
+    Set Username  validname
+    Set Password  validpw123
+    Click Button  Login
+    Main Page Should Be Open
+
+Login After Failed Registration
+    Go To Login Page
+    Set Username  validname
+    Set Password  k
+    Click Button  Login
+    Login Should Fail With Message  Invalid username or password
+
 *** Keywords ***
 Register Should Succeed
     Welcome Page Should Be Open
@@ -40,6 +54,11 @@ Register Should Succeed
 Register Should Fail With Message
     [Arguments]  ${message}
     Register Page Should Be Open
+    Page Should Contain  ${message}
+
+Login Should Fail With Message
+    [Arguments]  ${message}
+    Login Page Should Be Open
     Page Should Contain  ${message}
 
 Submit Credentials
