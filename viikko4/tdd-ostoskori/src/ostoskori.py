@@ -37,7 +37,7 @@ class Ostoskori:
             if self.ostot[poistettava.nimi].lukumaara() == 0:
                 del self.ostot[poistettava.nimi]
     def tyhjenna(self):
-        pass
+        self.ostot = {}
         # tyhjentää ostoskorin
 
     def ostokset(self):
