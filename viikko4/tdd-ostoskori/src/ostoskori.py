@@ -3,12 +3,12 @@ from ostos import Ostos
 
 class Ostoskori:
     def __init__(self):
-        self.ostokset = {}
+        self.ostot = {}
         # ostoskori tallettaa Ostos-oliota, yhden per korissa oleva Tuote
 
     def tavaroita_korissa(self):
         tavaroita = 0
-        for key, value in self.ostokset.items():
+        for key, value in self.ostot.items():
             tavaroita += value.lukumaara()
         return tavaroita
 
@@ -18,17 +18,17 @@ class Ostoskori:
 
     def hinta(self):
         hinta = 0
-        for key, value in self.ostokset.items():
+        for key, value in self.ostot.items():
             hinta += value.hinta()
         return hinta
         # kertoo korissa olevien ostosten yhteenlasketun hinnan
 
     def lisaa_tuote(self, lisattava: Tuote):
-        if lisattava.nimi not in self.ostokset:
+        if lisattava.nimi not in self.ostot:
             ostos = Ostos(lisattava)
-            self.ostokset[lisattava.nimi] = ostos
+            self.ostot[lisattava.nimi] = ostos
         else:
-            self.ostokset[lisattava.nimi].muuta_lukumaaraa(1)
+            self.ostot[lisattava.nimi].muuta_lukumaaraa(1)
 
     def poista_tuote(self, poistettava: Tuote):
         # poistaa tuotteen
@@ -39,6 +39,9 @@ class Ostoskori:
         # tyhjentää ostoskorin
 
     def ostokset(self):
-        pass
+        ostoslista = []
+        for key, value in self.ostot.items():
+            ostoslista.append(value)
+        return ostoslista
         # palauttaa listan jossa on korissa olevat ostos-oliot
         # kukin ostos-olio siis kertoo mistä tuotteesta on kyse JA kuinka monta kappaletta kyseistä tuotetta korissa on
